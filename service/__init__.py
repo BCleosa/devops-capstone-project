@@ -35,7 +35,7 @@ except Exception as error:  # pylint: disable=broad-except
     sys.exit(4)
 
 # Security Headers
-talisman = Talisman(app)
+talisman = Talisman(app, force_https=False)
 
 # CORS
 CORS(app)
