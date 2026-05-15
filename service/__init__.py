@@ -6,6 +6,8 @@ and SQL database
 """
 import sys
 from flask import Flask
+from flask_talisman import Talisman
+from flask_cors import CORS
 from service import config
 from service.common import log_handlers
 
@@ -16,7 +18,6 @@ app.config.from_object(config)
 # Import the routes After the Flask app is created
 # pylint: disable=wrong-import-position, cyclic-import, wrong-import-order
 from service import routes, models  # noqa: F401 E402
-
 # pylint: disable=wrong-import-position
 from service.common import error_handlers, cli_commands  # noqa: F401 E402
 
@@ -31,7 +32,12 @@ try:
     models.init_db(app)  # make our database tables
 except Exception as error:  # pylint: disable=broad-except
     app.logger.critical("%s: Cannot continue", error)
-    # gunicorn requires exit code 4 to stop spawning workers when they die
     sys.exit(4)
+
+# Security Headers
+talisman = Talisman(app)
+
+# CORS
+CORS(app)
 
 app.logger.info("Service initialized!")
