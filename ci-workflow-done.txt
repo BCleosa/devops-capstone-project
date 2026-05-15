@@ -1,0 +1,24 @@
+2026-05-15T04:52:45.6264756Z Account Service Tests
+- It should not Create an Account when sending the wrong data
+- It should Create a new Account
+- It should be healthy
+- It should get 200_OK from the Home Page
+- It should not Create an Account when sending the wrong media type
+
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+service/__init__.py                   18      3    83%   32-35
+service/common/__init__.py             0      0   100%
+service/common/cli_commands.py         7      0   100%
+service/common/error_handlers.py      32      9    72%   35-37, 46-48, 76-78
+service/common/log_handlers.py        10      1    90%   21
+service/common/status.py              46      0   100%
+service/config.py                     11      5    55%   12-16
+service/models.py                     69      3    96%   32, 98, 127
+service/routes.py                     55     21    62%   48-51, 57-62, 68-75, 81-85
+----------------------------------------------------------------
+TOTAL                                248     42    83%
+----------------------------------------------------------------------
+Ran 17 tests in 0.665s
+
+OK
